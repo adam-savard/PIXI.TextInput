@@ -1,6 +1,4 @@
-(function (pkg){
-
-const PIXI = pkg.PIXI
+import * as PIXI from 'pixi.js';
 
 class TextInput extends PIXI.Container{
 	constructor(styles){
@@ -643,53 +641,4 @@ class TextInput extends PIXI.Container{
 	}
 }
 
-
-function DefaultBoxGenerator(styles){
-	styles = styles || {fill: 0xcccccc}
-
-	if(styles.default){
-		styles.focused = styles.focused || styles.default
-		styles.disabled = styles.disabled || styles.default
-	}else{
-		let temp_styles = styles
-		styles = {}
-		styles.default = styles.focused = styles.disabled = temp_styles
-	}
-
-	return function(w,h,state){
-		let style = styles[state.toLowerCase()]
-		let box = new PIXI.Graphics()
-
-		if(style.fill)
-			box.beginFill(style.fill)
-
-		if(style.stroke)
-			box.lineStyle(
-				style.stroke.width || 1,
-				style.stroke.color || 0,
-				style.stroke.alpha || 1
-			)
-
-		if(style.rounded)
-			box.drawRoundedRect(0,0,w,h,style.rounded)
-		else
-			box.drawRect(0,0,w,h)
-
-		box.endFill()
-		box.closePath()
-
-		return box
-	}
-}
-
-pkg.exportTo[0][pkg.exportTo[1]] = TextInput
-
-})(
-	typeof PIXI === 'object'
-	? { PIXI: PIXI, exportTo: [PIXI,'TextInput'] }
-	: (
-		typeof module === 'object'
-		? { PIXI: require('pixi.js'), exportTo: [module,'exports'] }
-		: console.warn('[PIXI.TextInput] could not attach to PIXI namespace. Make sure to include this plugin after pixi.js') || {}
-	)
-)
+export {TextInput};
