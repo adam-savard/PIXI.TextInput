@@ -1,4 +1,4 @@
-import * as PIXI from 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.2.2/esm/pixi.min.js';
+import * as PIXI from 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.2.2/browser/pixi.min.mjs';
 
 class TextInput extends PIXI.Container{
 	constructor(styles){
